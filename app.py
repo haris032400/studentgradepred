@@ -43,21 +43,10 @@ if st.button("Predict"):
         pred_class = np.argmax(probs)
         pred_grade = grade_map[pred_class]
 
-        # Display the predicted grade
+        # Display only the predicted grade
         st.markdown(f"<h2 style='text-align: center; color: green;'>✅ Predicted Grade: {pred_grade}</h2>", unsafe_allow_html=True)
-
-        # Display probabilities with progress bars
-        #st.subheader("Prediction Probabilities")
-        f#or i, grade in grade_map.items():
-          #  st.write(f"{grade}: {probs[i]*100:.2f}%")
-           # st.progress(probs[i])
 
     except ValueError:
         st.error("Please enter valid numbers in all fields.")
     except Exception as e:
-       st.error(f"❌ Error: {e}")
-
-
-
-
-
+        st.error(f"❌ Error: {e}")
