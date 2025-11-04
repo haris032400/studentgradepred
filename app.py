@@ -55,6 +55,7 @@ if st.button("Predict"):
     except ValueError:
         st.error("Please enter valid numbers in all fields.")
     except Exception as e:
-        st.error(f"❌ Error: {e}")
+     #   st.error(f"❌ Error: {e}")
+
 
 
