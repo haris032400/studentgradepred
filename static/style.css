@@ -1,0 +1,84 @@
+/* static/style.css */
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #f4f4f9;
+    padding: 30px;
+    margin: 0;
+}
+
+.container {
+    max-width: 500px;
+    background: #fff;
+    margin: auto;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    color: #333;
+    font-weight: 500;
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.3s ease-in-out;
+}
+
+input[type="number"]:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+input[type="submit"] {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+.result {
+    background: #e6ffe6;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 6px;
+    border-left: 6px solid #4CAF50;
+}
+
+.probabilities {
+    font-size: 14px;
+    color: #555;
+    margin-top: 10px;
+}
+
+.probabilities ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.probabilities li {
+    margin-bottom: 6px;
+}
