@@ -10,14 +10,26 @@ grade_map = {0: 'A+', 1: 'A', 2: 'B', 3: 'C', 4: 'F'}
 # Load model
 model = tf.keras.models.load_model('Model/grade_predictor_model.h5')  # Update path if needed
 
-st.title("Grade Prediction")
-st.write("Enter the student's scores:")
+# --- Page Title ---
+st.markdown("<h1 style='text-align: center; color: darkblue;'>🎓 Student Grade Prediction</h1>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: grey;'>Enter the student's scores to predict the grade</p>", unsafe_allow_html=True)
+st.write("---")
 
-# User inputs (text boxes, empty by default)
-quiz_input = st.text_input("Quiz score(Out of 10)")
-participation_input = st.text_input("Participation score(Out of 10)")
-attendance_input = st.text_input("Attendance score(Out of 10)")
+# --- User Inputs in Columns ---
+col1, col2, col3 = st.columns(3)
 
+with col1:
+    quiz_input = st.text_input("Quiz score (Out of 10)")
+
+with col2:
+    participation_input = st.text_input("Participation score (Out of 10)")
+
+with col3:
+    attendance_input = st.text_input("Attendance score (Out of 10)")
+
+st.write("---")
+
+# --- Predict Button ---
 if st.button("Predict"):
     try:
         # Convert inputs to float
@@ -25,21 +37,23 @@ if st.button("Predict"):
         participation = float(participation_input)
         attendance = float(attendance_input)
 
-        # Predict
+        # Prepare input and predict
         input_data = np.array([[quiz, participation, attendance]], dtype=np.float32)
         probs = model.predict(input_data)[0]
         pred_class = np.argmax(probs)
         pred_grade = grade_map[pred_class]
 
-        # Format probabilities nicely
-        probs_dict = {grade_map[i]: f"{p:.2%}" for i, p in enumerate(probs)}
+        # Display the predicted grade
+        st.markdown(f"<h2 style='text-align: center; color: green;'>✅ Predicted Grade: {pred_grade}</h2>", unsafe_allow_html=True)
 
-        st.success(f"Predicted Grade: {pred_grade}")
-        #st.write("Prediction Probabilities:")
-        #for grade, prob in probs_dict.items():
-         #   st.write(f"{grade}: {prob}")
+        # Display probabilities with progress bars
+        st.subheader("Prediction Probabilities")
+        for i, grade in grade_map.items():
+            st.write(f"{grade}: {probs[i]*100:.2f}%")
+            st.progress(probs[i])
 
     except ValueError:
         st.error("Please enter valid numbers in all fields.")
     except Exception as e:
-        st.error(f"Error: {e}")
+        st.error(f"❌ Error: {e}")
+
